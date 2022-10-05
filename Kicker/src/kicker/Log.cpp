@@ -1,11 +1,12 @@
 #include "kckpch.h"
 #include "Log.h"
+#include "Core.h"
 
 #include <spdlog/sinks/stdout_color_sinks.h>
 
 namespace Kicker {
 
-	std::shared_ptr<spdlog::logger> Log::s_Logger;
+	Ref<spdlog::logger> Log::s_Logger;
 
 	void Log::Init()
 	{

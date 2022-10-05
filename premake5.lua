@@ -33,7 +33,7 @@ project "Kicker"
 	}
 
 	filter "system:windows"
-		cppdialect "c++17"
+		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
 
@@ -49,3 +49,6 @@ project "Kicker"
 	filter "configurations:Release"
 		defines "KCK_RELEASE"
 		optimize "On"
+
+	filter "files:Kicker/src/ExportedFunctions.cpp"
+		flags "NoPCH"

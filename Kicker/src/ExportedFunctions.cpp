@@ -1,10 +1,11 @@
 #include "ExportedFunctions.h"
 #include "Kicker.h"
-#include "kckpch.h"
+#include <glm/ext/matrix_clip_space.hpp>
+#include <glm/detail/type_mat4x4.hpp>
 
 void Print() {
 
 	Kicker::Log::Init();
-	Kicker::Log::GetLogger()->warn("Logger Initialized!");
-	Kicker::Log::GetLogger()->info("This is a function call from Kicker!");
+	KCK_WARN("Logger Initialized!");
+	KCK_INFO("This is a function call from Kicker!");
 }
