@@ -18,3 +18,9 @@ namespace Kicker {
 
 }
 
+
+#define KCK_TRACE(...) ::Kicker::Log::GetLogger()->trace(__VA_ARGS__)
+#define KCK_INFO(...) ::Kicker::Log::GetLogger()->info(__VA_ARGS__)
+#define KCK_WARN(...) ::Kicker::Log::GetLogger()->warn(__VA_ARGS__)
+#define KCK_ERROR(...) ::Kicker::Log::GetLogger()->error(__VA_ARGS__)
+#define KCK_FATAL(...) ::Kicker::Log::GetLogger()->fatal(__VA_ARGS__)
