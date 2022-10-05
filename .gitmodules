@@ -1,0 +1,3 @@
+[submodule "Kicker/vendor/spdlog"]
+	path = Kicker/vendor/spdlog
+	url = https://github.com/gabime/spdlog
