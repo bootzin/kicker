@@ -1,5 +1,6 @@
 #include "ExportedFunctions.h"
-#include "src/Kicker.h"
+#include "Kicker.h"
+#include "kckpch.h"
 
 void Print() {
 
