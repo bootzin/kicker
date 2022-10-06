@@ -15,6 +15,8 @@
 
 #include "kicker/Log.h"
 
+#include "kicker/Core.h"
+
 #ifdef KCK_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif
