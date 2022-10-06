@@ -8,6 +8,8 @@
 
 #ifdef KCK_ENABLE_ASSERT
 	#define KCK_ASSERT(x, ...) { if (!(x)) KCK_ERROR("Assertion Failed: {0}", __VA_ARGS__) }
+#else
+	#define KCK_ASSERT(x, ...)
 #endif
 
 namespace  Kicker {
