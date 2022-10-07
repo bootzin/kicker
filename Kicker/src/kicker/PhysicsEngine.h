@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef PHYSICS_ENGINE_INCLUDED_H
+#define PHYSICS_ENGINE_INCLUDED_H
+
 #include "PhysicsObject.h"
 #include <vector>
 
@@ -9,7 +12,7 @@ namespace Kicker
 	class PhysicsEngine
 	{
 	public:
-		PhysicsEngine() { }
+		PhysicsEngine() {}
 
 		void AddObject(PhysicsObject* obj);
 		void Simulate(float delta);
@@ -18,3 +21,5 @@ namespace Kicker
 	};
 
 }
+#endif // !PHYSICS_ENGINE_INCLUDED_H
+

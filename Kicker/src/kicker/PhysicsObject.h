@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef PHYSICS_OBJECT_INCLUDED_H
+#define PHYSICS_OBJECT_INCLUDED_H
+
 #include "glm/glm.hpp"
 
 namespace Kicker
@@ -7,7 +10,7 @@ namespace Kicker
 	class PhysicsObject
 	{
 	public:
-		PhysicsObject(glm::vec3 position, glm::vec3 velocity) : m_position(position), m_velocity(velocity) { }
+		PhysicsObject(glm::vec3 position, glm::vec3 velocity) : m_position(position), m_velocity(velocity) {}
 
 		void Integrate(float delta);
 
@@ -18,4 +21,6 @@ namespace Kicker
 		glm::vec3 m_velocity;
 	};
 }
+
+#endif // !PHYSICS_OBJECT_INCLUDED_H
 

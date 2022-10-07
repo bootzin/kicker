@@ -1,9 +1,7 @@
 #pragma once
+
 #ifndef PLANE_INCLUDED_H
 #define PLANE_INCLUDED_H
-
-
-#endif // !PLANE_INCLUDED_H
 
 #include "glm/glm.hpp"
 #include "BoundingSphere.h"
@@ -29,3 +27,4 @@ namespace Kicker {
 
 }
 
+#endif // !PLANE_INCLUDED_H
