@@ -9,7 +9,7 @@ namespace Kicker {
 		glm::vec3 distances2 = m_min - other.GetMaxExtents();
 		glm::vec3 distances = glm::max(distances1, distances2);
 
-		float maxDistance = glm::max(distances[0], glm::max(distances[1], distances[2]));
+		real maxDistance = glm::max(distances[0], glm::max(distances[1], distances[2]));
 
 		return IntersectData(maxDistance < 0, maxDistance);
 	}

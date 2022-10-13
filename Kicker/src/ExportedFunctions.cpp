@@ -1,5 +1,4 @@
 #include "ExportedFunctions.h"
-#include "Kicker.h"
 #include <glm/glm.hpp>
 
 // Create
@@ -8,17 +7,17 @@ Kicker::PhysicsEngine* CreatePhysicsEngine()
 	return new Kicker::PhysicsEngine();
 }
 
-Kicker::BoundingSphere* CreateBoundingSphere(glm::vec3 center, float radius)
+Kicker::BoundingSphere* CreateBoundingSphere(glm::vec3 center, Kicker::real radius, Kicker::PhysicsMaterial* material, bool isTrigger)
 {
-	return new Kicker::BoundingSphere(center, radius);
+	return new Kicker::BoundingSphere(center, radius, material, isTrigger);
 }
 
-Kicker::AABB* CreateAABB(glm::vec3 min, glm::vec3 max)
+Kicker::AABB* CreateAABB(glm::vec3 min, glm::vec3 max, Kicker::PhysicsMaterial* material, bool isTrigger)
 {
-	return new Kicker::AABB(min, max);
+	return new Kicker::AABB(min, max, material, isTrigger);
 }
 
-Kicker::Plane* CreatePlane(glm::vec3 normal, float distance)
+Kicker::Plane* CreatePlane(glm::vec3 normal, Kicker::real distance)
 {
 	return new Kicker::Plane(normal, distance);
 }

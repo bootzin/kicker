@@ -11,17 +11,17 @@ namespace Kicker {
 	class Plane
 	{
 	public:
-		Plane(const glm::vec3& normal, float distance) : m_normal(normal), m_distance(distance) { }
+		Plane(const glm::vec3& normal, real distance) : m_normal(normal), m_distance(distance) { }
 
 		Plane Normalized() const;
 
 		IntersectData IntersectSphere(const BoundingSphere& sphere) const;
 
 		inline const glm::vec3 GetNormal() const { return m_normal; }
-		inline const float GetDistance() const { return m_distance; }
+		inline const real GetDistance() const { return m_distance; }
 	private:
 		const glm::vec3 m_normal;
-		const float m_distance;
+		const real m_distance;
 
 	};
 

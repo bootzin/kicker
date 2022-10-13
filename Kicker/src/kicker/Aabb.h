@@ -5,13 +5,14 @@
 
 #include "glm/glm.hpp"
 #include "IntersectData.h"
+#include "Collider.h"
 
 namespace Kicker {
 
-	class AABB
+	class AABB : public Collider
 	{
 	public:
-		AABB(const glm::vec3 min, const glm::vec3 max) : m_min(min), m_max(max) { }
+		AABB(const glm::vec3 min, const glm::vec3 max, PhysicsMaterial* material, bool isTrigger = false) : Collider(TYPE_AABB, isTrigger, material), m_min(min), m_max(max) { }
 
 		IntersectData IntersectAABB(const AABB& other) const;
 

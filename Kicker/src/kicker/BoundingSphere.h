@@ -4,21 +4,22 @@
 
 #include "glm/glm.hpp"
 #include "IntersectData.h"
+#include "Collider.h"
 
 namespace Kicker {
 
-	class BoundingSphere
+	class BoundingSphere : public Collider
 	{
 	public:
-		BoundingSphere(const glm::vec3 center, float radius) : m_center(center), m_radius(radius) { }
+		BoundingSphere(const glm::vec3 center, real radius, PhysicsMaterial* material, bool isTrigger = false) : Collider(Collider::TYPE_SPHERE, isTrigger, material), m_center(center), m_radius(radius) {}
 
 		IntersectData IntersectBoundingSphere(const BoundingSphere& other);
 
 		inline const glm::vec3 GetCenter() const { return m_center; }
-		inline float GetRadius() const { return m_radius; }
+		inline real GetRadius() const { return m_radius; }
 	private:
 		glm::vec3 m_center;
-		float m_radius;
+		real m_radius;
 	};
 
 }

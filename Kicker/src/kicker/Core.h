@@ -30,4 +30,6 @@ namespace  Kicker {
 		return std::make_shared<T>(std::forward<Args>(args)...);
 	}
 
+	// Define floating point precision for Kicker
+	typedef float real;
 }
