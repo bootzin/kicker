@@ -3,7 +3,7 @@
 
 namespace Kicker
 {
-	void PhysicsObject::Integrate(float delta)
+	void PhysicsObject::Integrate(const float delta)
 	{
 		m_position += m_velocity * delta;
 	}

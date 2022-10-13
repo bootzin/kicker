@@ -5,6 +5,16 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include "glm/gtx/string_cast.hpp"
 
+#ifdef KCK_DEBUG
+#define KCK_ENABLE_ASSERT
+#endif
+
+#ifdef KCK_ENABLE_ASSERT
+#define KCK_ASSERT(x, ...) { if (!(x)) { KCK_ERROR("Assertion Failed: {0}", __VA_ARGS__); } }
+#else
+#define KCK_ASSERT(x, ...)
+#endif
+
 // This ignores all warnings raised inside External headers
 #pragma warning(push, 0)
 #include <spdlog/spdlog.h>
@@ -18,7 +28,12 @@ namespace Kicker {
 	public:
 		static void Init();
 
-		static Ref<spdlog::logger>& GetLogger() { return s_Logger; }
+		static Ref<spdlog::logger>& GetLogger()
+		{
+			if (!s_Logger)
+				Init();
+			return s_Logger;
+		}
 
 	private:
 	static Ref<spdlog::logger> s_Logger;

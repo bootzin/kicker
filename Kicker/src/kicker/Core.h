@@ -1,16 +1,7 @@
 #pragma once
 
 #include <memory>
-
-#ifdef KCK_DEBUG
-	#define KCK_ENABLE_ASSERT
-#endif
-
-#ifdef KCK_ENABLE_ASSERT
-	#define KCK_ASSERT(x, ...) { if (!(x)) KCK_ERROR("Assertion Failed: {0}", __VA_ARGS__) }
-#else
-	#define KCK_ASSERT(x, ...)
-#endif
+#include <float.h>
 
 namespace  Kicker {
 
@@ -30,6 +21,20 @@ namespace  Kicker {
 		return std::make_shared<T>(std::forward<Args>(args)...);
 	}
 
+#if 1
+	#define SINGLE_PRECISION
+	#define REAL_MAX FLT_MAX
+	#define real_epsilon FLT_EPSILON
+	#define R_PI 3.14159f
 	// Define floating point precision for Kicker
 	typedef float real;
+#else
+	#define DOUBLE_PRECISION
+	#define REAL_MAX DBL_MAX
+	#define real_epsilon DBL_EPSILON
+	#define R_PI 3.14159265358979
+	// Define floating point precision for Kicker
+	typedef double real;
+#endif
+
 }

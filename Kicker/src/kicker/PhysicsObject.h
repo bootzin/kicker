@@ -12,7 +12,7 @@ namespace Kicker
 	public:
 		PhysicsObject(glm::vec3 position, glm::vec3 velocity) : m_position(position), m_velocity(velocity) {}
 
-		void Integrate(float delta);
+		void Integrate(const float delta);
 
 		inline const glm::vec3 GetPosition() const { return m_position; }
 		inline const glm::vec3 GetVelocity() const { return m_velocity; }
