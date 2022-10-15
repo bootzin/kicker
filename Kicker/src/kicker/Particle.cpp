@@ -16,5 +16,7 @@ namespace Kicker
 
 		// Impose drag
 		m_Velocity *= glm::pow(m_Damping, deltaTime);
+
+		ClearAccumForce();
 	}
 }

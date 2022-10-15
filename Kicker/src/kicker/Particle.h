@@ -32,6 +32,7 @@ namespace Kicker
 		void SetMass(const real mass) { KCK_ASSERT(mass != 0, "Mass cannot be 0."); m_InverseMass = ((real)1.) / mass; }
 
 		void AddForce(const glm::vec3& force) { m_ForceAccum += force; }
+		const void ClearAccumForce() { m_ForceAccum = { 0, 0, 0 }; }
 
 		void Integrate(const real deltaTime);
 	private:
