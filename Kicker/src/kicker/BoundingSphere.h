@@ -15,8 +15,8 @@ namespace Kicker {
 
 		IntersectData IntersectBoundingSphere(const BoundingSphere& other);
 
-		inline const glm::vec3 GetCenter() const { return m_center; }
-		inline real GetRadius() const { return m_radius; }
+		const glm::vec3 GetCenter() const { return m_center; }
+		real GetRadius() const { return m_radius; }
 	private:
 		glm::vec3 m_center;
 		real m_radius;

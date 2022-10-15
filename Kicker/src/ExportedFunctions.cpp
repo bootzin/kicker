@@ -7,24 +7,9 @@ Kicker::PhysicsEngine* CreatePhysicsEngine()
 	return new Kicker::PhysicsEngine();
 }
 
-Kicker::BoundingSphere* CreateBoundingSphere(glm::vec3 center, Kicker::real radius, Kicker::PhysicsMaterial* material, bool isTrigger)
-{
-	return new Kicker::BoundingSphere(center, radius, material, isTrigger);
-}
-
-Kicker::AABB* CreateAABB(glm::vec3 min, glm::vec3 max, Kicker::PhysicsMaterial* material, bool isTrigger)
-{
-	return new Kicker::AABB(min, max, material, isTrigger);
-}
-
 Kicker::Plane* CreatePlane(glm::vec3 normal, Kicker::real distance)
 {
 	return new Kicker::Plane(normal, distance);
-}
-
-Kicker::PhysicsObject* CreatePhysicsObject(glm::vec3 position, glm::vec3 velocity)
-{
-	return new Kicker::PhysicsObject(position, velocity);
 }
 
 // Intersect
@@ -47,16 +32,6 @@ Kicker::IntersectData* IntersectsPlaneSphere(Kicker::Plane* plane, Kicker::Bound
 }
 
 // Delete
-void DeleteBoundingSphere(Kicker::BoundingSphere* sphere)
-{
-	delete sphere;
-}
-
-void DeleteAABB(Kicker::AABB* aabb)
-{
-	delete aabb;
-}
-
 void DeletePlane(Kicker::Plane* plane)
 {
 	delete plane;
@@ -67,23 +42,23 @@ void DeleteIntersect(Kicker::IntersectData* data)
 	delete data;
 }
 
-void DeletePhysicsObject(Kicker::PhysicsObject* po)
-{
-	delete po;
-}
-
 void DeletePhysicsEngine(Kicker::PhysicsEngine* pe)
 {
 	delete pe;
 }
 
 // Physics Engine
-void SimulatePhysicsEngine(Kicker::PhysicsEngine* physicsEngine, float deltaTime)
+void SimulatePhysicsEngine(Kicker::PhysicsEngine* physicsEngine, Kicker::real deltaTime)
 {
 	physicsEngine->Simulate(deltaTime);
 }
 
-void AddPhysicsObjectToPhysicsEngine(Kicker::PhysicsEngine* physicsEngine, Kicker::PhysicsObject* obj)
+void AddParticleToPhysicsEngine(Kicker::PhysicsEngine* physicsEngine, Kicker::Particle* obj)
 {
 	physicsEngine->AddObject(obj);
+}
+
+void RemoveParticleFromPhysicsEngine(Kicker::PhysicsEngine* physicsEngine, Kicker::Particle* obj)
+{
+	physicsEngine->RemoveObject(obj);
 }

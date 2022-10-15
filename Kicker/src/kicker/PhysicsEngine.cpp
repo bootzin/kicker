@@ -3,16 +3,21 @@
 
 namespace Kicker
 {
-	void PhysicsEngine::AddObject(PhysicsObject* obj)
+	void PhysicsEngine::AddObject(Particle* obj)
 	{
-		m_objects.push_back(obj);
+		m_Particles.push_back(obj);
 	}
 
-	void PhysicsEngine::Simulate(float delta)
+	void PhysicsEngine::RemoveObject(Particle* obj)
 	{
-		for (unsigned int i = 0; i < m_objects.size(); i++)
+		m_Particles.erase(std::find(m_Particles.begin(), m_Particles.end(), obj));
+	}
+
+	void PhysicsEngine::Simulate(real delta)
+	{
+		for (unsigned int i = 0; i < m_Particles.size(); i++)
 		{
-			(*m_objects[i]).Integrate(delta);
+			m_Particles[i]->Integrate(delta);
 		}
 	}
 }

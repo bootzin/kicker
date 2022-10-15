@@ -10,7 +10,7 @@ namespace Kicker
 	class Collider
 	{
 	public:
-		Collider(const int type, const bool isTrigger, PhysicsMaterial* material) : m_Type(type), m_IsTrigger(isTrigger), m_Material(material) {}
+		Collider(const unsigned int type, const bool isTrigger, PhysicsMaterial* material) : m_Type(type), m_IsTrigger(isTrigger), m_Material(material) {}
 		virtual ~Collider()
 		{
 			delete m_Material;
@@ -26,11 +26,11 @@ namespace Kicker
 
 		IntersectData Intersect(const Collider& other);
 
-		inline const int GetType() const { return m_Type; }
-		inline const PhysicsMaterial* GetMaterial() const { return m_Material; }
-		inline const bool GetIsTrigger() const { return m_IsTrigger; }
+		const unsigned int GetType() const { return m_Type; }
+		const PhysicsMaterial* GetMaterial() const { return m_Material; }
+		const bool GetIsTrigger() const { return m_IsTrigger; }
 	private:
-		int m_Type;
+		unsigned int m_Type;
 		PhysicsMaterial* m_Material;
 		bool m_IsTrigger;
 	};

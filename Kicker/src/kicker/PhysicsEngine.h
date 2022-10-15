@@ -3,7 +3,7 @@
 #ifndef PHYSICS_ENGINE_INCLUDED_H
 #define PHYSICS_ENGINE_INCLUDED_H
 
-#include "PhysicsObject.h"
+#include "Particle.h"
 #include <vector>
 
 namespace Kicker
@@ -14,10 +14,11 @@ namespace Kicker
 	public:
 		PhysicsEngine() {}
 
-		void AddObject(PhysicsObject* obj);
-		void Simulate(float delta);
+		void AddObject(Particle* obj);
+		void RemoveObject(Particle* obj);
+		void Simulate(real delta);
 	private:
-		std::vector<PhysicsObject*> m_objects;
+		std::vector<Particle*> m_Particles;
 	};
 
 }
