@@ -13,9 +13,10 @@ namespace Kicker
 		virtual void UpdateForce(Particle* particle, real deltaTime) = 0;
 	};
 
-	class ParticleForceRegistry
-	{
-	protected:
+#pragma region ParticleForceRegistry
+    class ParticleForceRegistry
+    {
+    protected:
         struct ParticleForceRegistration
         {
         public:
@@ -41,18 +42,24 @@ namespace Kicker
         void Clear();
 
         void UpdateForces(real deltaTime);
-	};
+    };
+#pragma endregion
 
+#pragma region Generators
+
+#pragma region Gravity
     class GravityForceGenerator : public ParticleForceGenerator
     {
     public:
-        GravityForceGenerator(const glm::vec3& gravity) : m_Gravity(gravity) { }
+        GravityForceGenerator(const glm::vec3& gravity) : m_Gravity(gravity) {}
 
-        virtual void UpdateForce(Particle* particle, real deltaTime);
+        virtual void UpdateForce(Particle* particle, real deltaTime) override;
     private:
         glm::vec3 m_Gravity;
     };
+#pragma endregion
 
+#pragma region Drag
     class DragForceGenerator : public ParticleForceGenerator
     {
     public:
@@ -63,5 +70,59 @@ namespace Kicker
         real m_K1;
         real m_K2;
     };
+#pragma endregion
+
+#pragma region Spring-likes
+#pragma region Particle Spring
+    class SpringForceGenerator : public ParticleForceGenerator
+    {
+    public:
+        SpringForceGenerator(Particle* otherEnd, real constant, real restLength, bool isBungee) : m_OtherEnd(otherEnd), m_SpringConstant(constant), m_RestLength(restLength), m_IsBungee(isBungee) {}
+
+        virtual void UpdateForce(Particle* particle, real deltaTime) override;
+    private:
+        Particle* m_OtherEnd;
+        real m_SpringConstant;
+        real m_RestLength;
+        bool m_IsBungee;
+    };
+#pragma endregion
+
+#pragma region Anchored Spring
+    class AnchoredSpringForceGenerator : public ParticleForceGenerator
+    {
+    public:
+        AnchoredSpringForceGenerator(glm::vec3* otherEnd, real constant, real restLength, bool isBungee) : m_OtherEnd(otherEnd), m_SpringConstant(constant), m_RestLength(restLength), m_IsBungee(isBungee) {}
+
+        virtual void UpdateForce(Particle* particle, real deltaTime) override;
+    private:
+        glm::vec3* m_OtherEnd;
+        real m_SpringConstant;
+        real m_RestLength;
+        bool m_IsBungee;
+    };
+#pragma endregion
+
+#pragma region Buyoancy
+    class BuyoancyForceGenerator : public ParticleForceGenerator
+    {
+    public:
+        BuyoancyForceGenerator(real maxDepth, real volume, real liquidHeight, real liquidDensity = 1000.f) :
+            m_MaxDepth(maxDepth), m_Volume(volume), m_LiquidHeight(liquidHeight), m_LiquidDensity(liquidDensity)
+        {
+        }
+
+        virtual void UpdateForce(Particle* particle, real deltaTime) override;
+    private:
+        real m_MaxDepth;
+        real m_Volume;
+        real m_LiquidHeight;
+        real m_LiquidDensity;
+    };
+#pragma endregion
+
+    
+#pragma endregion
+#pragma endregion
 }
 #endif // !PARTICLE_FORCE_GEN_INCLUDED_H

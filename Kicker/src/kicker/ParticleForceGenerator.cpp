@@ -51,4 +51,55 @@ namespace Kicker
 		glm::vec3 force = -dragCoeff * glm::normalize(vel);
 		particle->AddForce(force);
 	}
+
+	// Particle Spring
+	void SpringForceGenerator::UpdateForce(Particle* particle, real deltaTime)
+	{
+		glm::vec3 distance = particle->GetPosition() - m_OtherEnd->GetPosition();
+		real distMagnitude = glm::length(distance);
+
+		if (m_IsBungee && distMagnitude < m_RestLength)
+			return;
+		
+		real magnitude = (distMagnitude - m_RestLength);
+
+		glm::vec3 force = -m_SpringConstant * magnitude * glm::normalize(distance);
+		particle->AddForce(force);
+	}
+
+	// Anchored Spring
+	void AnchoredSpringForceGenerator::UpdateForce(Particle* particle, real deltaTime)
+	{
+		glm::vec3 distance = particle->GetPosition() - *m_OtherEnd;
+		real distMagnitude = glm::length(distance);
+
+		if (m_IsBungee && distMagnitude < m_RestLength)
+			return;
+
+		real magnitude = (distMagnitude - m_RestLength);
+
+		glm::vec3 force = -m_SpringConstant * magnitude * glm::normalize(distance);
+		particle->AddForce(force);
+	}
+
+	// Buyoancy
+	void BuyoancyForceGenerator::UpdateForce(Particle* particle, real deltaTime)
+	{
+		real depth = particle->GetPosition().y;
+
+		if (depth >= m_LiquidHeight + m_MaxDepth)
+			return;
+
+		glm::vec3 force(0);
+
+		if (depth <= m_LiquidHeight - m_MaxDepth)
+		{
+			force.y = m_LiquidDensity * m_Volume;
+			particle->AddForce(force);
+			return;
+		}
+
+		force.y = m_LiquidDensity * m_Volume * (depth - m_MaxDepth - m_LiquidHeight) / 2 * m_MaxDepth;
+		particle->AddForce(force);
+	}
 }
