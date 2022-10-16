@@ -45,7 +45,7 @@ namespace Kicker
 
 		glm::vec3 vel = particle->GetVelocity();
 
-		real dragCoeff = vel.length();
+		real dragCoeff = glm::length(vel);
 		dragCoeff = m_K1 * dragCoeff + m_K2 * dragCoeff * dragCoeff;
 
 		glm::vec3 force = -dragCoeff * glm::normalize(vel);

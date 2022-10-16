@@ -23,6 +23,11 @@ namespace Kicker
 
             Particle* GetParticle() const { return  m_Particle; }
             ParticleForceGenerator* GetParticleForceGenerator() const { return  m_ForceGen; }
+
+            bool operator==(const ParticleForceRegistration& other)
+            {
+                return m_Particle == other.GetParticle() && m_ForceGen == other.GetParticleForceGenerator();
+            }
         private:
             Particle* m_Particle;
             ParticleForceGenerator* m_ForceGen;
