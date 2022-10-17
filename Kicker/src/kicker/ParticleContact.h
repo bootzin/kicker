@@ -12,6 +12,12 @@ namespace Kicker
 	{
 		friend class ParticleContactResolver;
 
+	public:
+		void SetParticles(Particle* const* particles) { m_Particles[0] = particles[0]; m_Particles[1] = particles[1]; }
+		void SetContactNormal(const glm::vec3& normal) { m_ContactNormal = normal; }
+		void SetPenetrationDepth(const real penetrationDepth) { m_PenetrationDepth = penetrationDepth; }
+		void SetRestitutionCoefficient(const real restitutionCoeff) { m_RestitutionCoeff = restitutionCoeff; }
+
 	protected:
 		void Resolve(const real deltaTime);
 		real CalculateSeparatingVelocity() const;
