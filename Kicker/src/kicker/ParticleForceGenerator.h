@@ -45,8 +45,7 @@ namespace Kicker
     };
 #pragma endregion
 
-#pragma region Generators
-
+#pragma region Force Generators
 #pragma region Gravity
     class GravityForceGenerator : public ParticleForceGenerator
     {
@@ -120,8 +119,6 @@ namespace Kicker
         real m_LiquidDensity;
     };
 #pragma endregion
-
-    
 #pragma endregion
 #pragma endregion
 }
